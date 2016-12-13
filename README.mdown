@@ -32,15 +32,15 @@ You can also add Qoncrete as a static library to your project or workspace.
 ## Usage
 
 ```objective-c
-// 1) Require sdk
+// 1) Import the header file
 #import "Qoncrete.h"
-// 2) Create a new client.
+// 2) Config the singleton.
 Qoncrete *client = [Qoncrete sharedSingleton];
 client.sourceID = @"SOURCE_ID";
 client.apiToken = @"API_TOKEN";
 [client endConfig];
 // 3) send a log
-client.send(@{ @"user": @"toto", @"action": @"purchase", @"price": @99.99 })
+[client send:@{ @"user": @"toto", @"action": @"purchase", @"price": @99.99 }];
 ```
 
 ## Client Options
