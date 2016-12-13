@@ -116,7 +116,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0810;
-				ORGANIZATIONNAME = Goyoo;
+				ORGANIZATIONNAME = Qoncrete;
 				TargetAttributes = {
 					A478C4C11DFE835800ABA2BF = {
 						CreatedOnToolsVersion = 8.1;
@@ -274,7 +274,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = QoncreteDemoOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.goyoo.QoncreteDemoOS;
+				PRODUCT_BUNDLE_IDENTIFIER = com.qoncrete.QoncreteDemoOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -286,7 +286,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = QoncreteDemoOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.goyoo.QoncreteDemoOS;
+				PRODUCT_BUNDLE_IDENTIFIER = com.qoncrete.QoncreteDemoOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
