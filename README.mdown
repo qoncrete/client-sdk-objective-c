@@ -1,0 +1,64 @@
+# Qoncrete iOS、macOS Client SDK
+
+`Qoncrete` works on iOS 6+、OS 10.7+ and requires ARC to build.
+
+## Adding Qoncrete to your project
+
+### CocoaPods
+
+[CocoaPods](http://cocoapods.org) is the recommended way to add Qoncrete to your project.
+
+1. Add a pod entry for Qoncrete to your Podfile `pod 'Qoncrete', '~> 0.0.2'`
+2. Install the pod(s) by running `pod install`.
+3. Include Qoncrete wherever you need it with `#import "Qoncrete.h"`.
+
+### Source files
+
+Alternatively you can directly add the `Qoncrete.h` and `Qoncrete.m` source files to your project.
+
+1. Download the [latest code version](https://github.com/qoncrete/client-sdk-Objective-C/archive/master.zip) or add the repository as a git submodule to your git-tracked project.
+2. Open your project in Xcode, then drag and drop `Qoncrete.h` and `Qoncrete.m` onto your project (use the "Product Navigator view"). Make sure to select Copy items when asked if you extracted the code archive outside of your project.
+3. Include Qoncrete wherever you need it with `#import "Qoncrete.h"`.
+
+### Static library
+
+You can also add Qoncrete as a static library to your project or workspace.
+
+1. Download the [latest code version](https://github.com/qoncrete/client-sdk-Objective-C/archive/master.zip) or add the repository as a git submodule to your git-tracked project.
+2. Open your project in Xcode, then drag and drop `Qoncrete.xcodeproj` onto your project or workspace (use the "Product Navigator view").
+3. Select your target and go to the Build phases tab. In the Link Binary With Libraries section select the add button. On the sheet find and add `libQoncrete.a`. You might also need to add `Qoncrete` to the Target Dependencies list.
+4. Include Qoncrete wherever you need it with `#import <Qoncrete/Qoncrete.h>`.
+
+## Usage
+
+```objective-c
+// 1) Require sdk
+#import "Qoncrete.h"
+// 2) Create a new client.
+Qoncrete *client = [Qoncrete sharedSingleton];
+client.sourceID = @"SOURCE_ID";
+client.apiToken = @"API_TOKEN";
+[client endConfig];
+// 3) send a log
+client.send(@{ @"user": @"toto", @"action": @"purchase", @"price": @99.99 })
+```
+
+## Client Options
+
+```objective-c
+Qoncrete *client = [Qoncrete sharedSingleton];
+client.sourceID = 'SOURCE_ID'; // MANDATORY: The source ID. (Once logged-in, can be found at https://qoncrete.com/account/#!/source)
+client.sourceID = 'API_TOKEN'; // MANDATORY: The api token. (Once logged-in, can be found at https://qoncrete.com/account/#!/token)
+client.errorLogger = ^(NSDictionary *err){
+	// do something.
+}; // A block called on error. typedef void (^errorLogger)(NSDictionary *err)
+client.cacheDNS = YES; // Active userland dns cache. Default: true"
+client.timeoutAfter = 15; // Abort the query on timeout. Default: 15s
+client.retryOnTimeout = 1; // Number of times to resend the log on timeout. Default: 1 (on timeout, it will retry one more time)
+client.autoBatch = true; // Try to send log by batch instead of sending them one by one. Default: true
+client.batchSize = 1000; // Only matters if autoBatch is True. Number of logs to send in a batch. Default: 1000, Max: 1000
+client.autoSendAfter = 2; // Only matters if autoBatch is True. Time after the logs will be sent if the batch is not full. Default: 2s
+client.concurrency = 200; // Number of simultaneous queries that can be made, can be set lower or higher depending your server configuration. Default: 200
+[client endConfig];
+```
+This is the iOS or OS client for [qoncrete's custom analytics platform](https://www.qoncrete.com).
